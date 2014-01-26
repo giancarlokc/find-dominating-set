@@ -1,0 +1,18 @@
+Giancarlo Klemm Camilo
+
+Backtrack algorithm in C++ to find a minimum dominating set for a given graph.
+
+Compile:
+
+	Just use 'make'
+
+Running:
+
+	./findDomSet < in > out
+		in: graph in the following format:
+			3 (Number of vertices)
+			1 1 (Vertex Degree and its neighbours)
+			2 0 1 (Vertex Degree and its neighbours)
+			1 1 (Vertex Degree and its neighbours)
+
+	run.sh: Script for testing different graph of 20 up to 60 vertices.
