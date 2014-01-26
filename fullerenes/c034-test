@@ -1,0 +1,16 @@
+Graph 1:
+	BEST so far (Size 11): 5  7  9  11  13  18  22  26  27  30  32
+	BEST so far (Size 10): 4  8  9  11  14  17  22  27  30  32
+Graph 2:
+	BEST so far (Size 12): 5  7  9  11  13  19  23  26  27  29  31  32
+	BEST so far (Size 11): 5  7  9  11  13  19  23  25  27  29  31
+	BEST so far (Size 10): 3  7  9  12  15  19  22  26  29  32
+Graph 3:
+	BEST so far (Size 10): 5  7  9  11  14  19  23  26  28  31
+Graph 4:
+	BEST so far (Size 11): 5  7  9  11  14  19  23  26  28  31  32
+	BEST so far (Size 10): 5  7  9  11  14  19  23  25  28  31
+Graph 5:
+	BEST so far (Size 10): 5  7  9  12  14  19  23  26  28  31
+Graph 6:
+	BEST so far (Size 10): 5  7  9  12  14  19  23  26  29  31

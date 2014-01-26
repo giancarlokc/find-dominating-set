@@ -1,0 +1,100 @@
+Graph   1: 
+BEST so far: Size  12:   5   7   9  11  13  18  22  26  27  31  34  37 
+BEST so far: Size  11:   4   7   9  11  14  18  22  27  31  34  37 
+Graph   1: Correct certificate.
+BEST: Size  11:   4   7   9  11  14  18  22  27  31  34  37 
+============================================
+Graph   2: 
+BEST so far: Size  12:   5   7   9  11  13  19  22  26  27  29  34  37 
+BEST so far: Size  11:   4   8   9  11  14  18  22  27  30  34  37 
+Graph   2: Correct certificate.
+BEST: Size  11:   4   8   9  11  14  18  22  27  30  34  37 
+============================================
+Graph   3: 
+BEST so far: Size  12:   5   7   9  11  13  19  23  27  29  32  35  37 
+BEST so far: Size  11:   4   8   9  11  14  18  23  27  30  32  35 
+Graph   3: Correct certificate.
+BEST: Size  11:   4   8   9  11  14  18  23  27  30  32  35 
+============================================
+Graph   4: 
+BEST so far: Size  13:   5   7   9  11  13  19  23  27  28  30  32  35  37 
+BEST so far: Size  12:   5   7   9  11  13  19  23  26  28  30  32  36 
+BEST so far: Size  11:   4   8   9  11  14  18  23  28  29  32  35 
+Graph   4: Correct certificate.
+BEST: Size  11:   4   8   9  11  14  18  23  28  29  32  35 
+============================================
+Graph   5: 
+BEST so far: Size  12:   5   7   9  11  14  19  23  27  29  32  35  37 
+BEST so far: Size  11:   5   7   9  11  14  19  23  26  29  32  36 
+Graph   5: Correct certificate.
+BEST: Size  11:   5   7   9  11  14  19  23  26  29  32  36 
+============================================
+Graph   6: 
+BEST so far: Size  12:   5   7   9  11  14  19  23  27  29  32  35  37 
+BEST so far: Size  11:   5   7   9  11  14  19  23  26  29  32  36 
+Graph   6: Correct certificate.
+BEST: Size  11:   5   7   9  11  14  19  23  26  29  32  36 
+============================================
+Graph   7: 
+BEST so far: Size  11:   5   7   9  11  14  19  23  27  29  33  35 
+Graph   7: Correct certificate.
+BEST: Size  11:   5   7   9  11  14  19  23  27  29  33  35 
+============================================
+Graph   8: 
+BEST so far: Size  12:   5   7   9  11  14  20  24  28  29  31  34  37 
+BEST so far: Size  11:   5   7   9  11  14  20  23  26  29  31  35 
+Graph   8: Correct certificate.
+BEST: Size  11:   5   7   9  11  14  20  23  26  29  31  35 
+============================================
+Graph   9: 
+BEST so far: Size  12:   5   7   9  11  14  20  24  28  30  32  34  37 
+BEST so far: Size  11:   5   7   9  11  14  18  20  23  26  29  35 
+Graph   9: Correct certificate.
+BEST: Size  11:   5   7   9  11  14  18  20  23  26  29  35 
+============================================
+Graph  10: 
+BEST so far: Size  12:   5   7   9  12  14  19  23  27  29  32  35  37 
+BEST so far: Size  11:   5   7   9  12  14  19  23  26  29  32  36 
+Graph  10: Correct certificate.
+BEST: Size  11:   5   7   9  12  14  19  23  26  29  32  36 
+============================================
+Graph  11: 
+BEST so far: Size  12:   5   7   9  12  14  19  23  27  30  33  35  37 
+BEST so far: Size  11:   4   8   9  12  15  18  23  26  30  33  36 
+Graph  11: Correct certificate.
+BEST: Size  11:   4   8   9  12  15  18  23  26  30  33  36 
+============================================
+Graph  12: 
+BEST so far: Size  12:   5   7   9  12  14  19  23  26  29  30  33  36 
+BEST so far: Size  11:   4   8   9  12  15  18  23  26  30  33  35 
+Graph  12: Correct certificate.
+BEST: Size  11:   4   8   9  12  15  18  23  26  30  33  35 
+============================================
+Graph  13: 
+BEST so far: Size  11:   5   7   9  12  14  20  24  27  29  32  34 
+Graph  13: Correct certificate.
+BEST: Size  11:   5   7   9  12  14  20  24  27  29  32  34 
+============================================
+Graph  14: 
+BEST so far: Size  12:   5   7   9  12  14  20  24  28  30  32  34  37 
+BEST so far: Size  11:   4   8   9  12  15  19  24  26  30  31  34 
+Graph  14: Correct certificate.
+BEST: Size  11:   4   8   9  12  15  19  24  26  30  31  34 
+============================================
+Graph  15: 
+BEST so far: Size  12:   5   7   9  12  14  20  24  27  30  32  34  37 
+BEST so far: Size  11:   4   8   9  12  15  19  23  26  30  33  36 
+Graph  15: Correct certificate.
+BEST: Size  11:   4   8   9  12  15  19  23  26  30  33  36 
+============================================
+Graph  16: 
+BEST so far: Size  11:   5   7   9  12  15  21  25  28  31  33  35 
+Graph  16: Correct certificate.
+BEST: Size  11:   5   7   9  12  15  21  25  28  31  33  35 
+============================================
+Graph  17: 
+BEST so far: Size  11:   5   7  10  12  15  20  24  27  30  31  34 
+BEST so far: Size  10:   3   7  10  13  17  20  24  27  30  34 
+Graph  17: Correct certificate.
+BEST: Size  10:   3   7  10  13  17  20  24  27  30  34 
+============================================

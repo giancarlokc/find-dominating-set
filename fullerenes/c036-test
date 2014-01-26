@@ -1,0 +1,45 @@
+Graph 1:
+	BEST so far (Size 12): 5  7  9  11  13  18  22  26  27  30  33  34
+	BEST so far (Size 11): 5  7  9  11  13  18  22  25  27  30  34
+	BEST so far (Size 10): 2  4  8  14  17  21  23  28  31  34
+Graph 2:
+	BEST so far (Size 13): 5  7  9  11  13  19  22  26  27  29  32  33  34
+	BEST so far (Size 12): 5  7  9  11  13  19  22  26  27  29  31  33
+	BEST so far (Size 11): 5  7  9  11  13  18  22  25  27  30  34
+Graph 3:
+	BEST so far (Size 11): 5  7  9  11  13  19  23  27  29  32  34
+Graph 4:
+	BEST so far (Size 12): 5  7  9  11  13  19  23  26  27  29  32  34
+	BEST so far (Size 11): 5  7  9  11  13  19  22  25  27  29  33
+Graph 5:
+	BEST so far (Size 11): 5  7  9  11  14  19  23  26  29  32  34
+	BEST so far (Size 10): 3  7  9  12  16  19  23  26  28  32
+Graph 6:
+	BEST so far (Size 11): 5  7  9  11  14  19  23  26  29  32  34
+	BEST so far (Size 10): 3  7  9  12  16  19  21  25  28  34
+Graph 7:
+	BEST so far (Size 11): 5  7  9  11  14  19  23  27  29  32  34
+	BEST so far (Size 10): 3  7  9  12  16  19  23  25  28  32
+Graph 8:
+	BEST so far (Size 11): 5  7  9  11  14  19  23  26  29  32  34
+	BEST so far (Size 10): 1  4  7  12  15  19  22  25  29  33
+Graph 9:
+	BEST so far (Size 12): 5  7  9  11  14  20  24  27  29  31  33  34
+	BEST so far (Size 11): 5  7  9  11  14  20  24  26  29  31  33
+	BEST so far (Size 10): 1  3  8  12  16  19  23  27  30  33
+Graph 10:
+	BEST so far (Size 11): 5  7  9  12  14  19  23  26  29  32  34
+	BEST so far (Size 10): 4  6  9  12  15  21  24  29  30  34
+Graph 11:
+	BEST so far (Size 11): 5  7  9  12  14  19  23  26  29  32  34
+	BEST so far (Size 10): 4  7  9  12  15  19  22  25  29  33
+Graph 12:
+	BEST so far (Size 11): 5  7  9  12  14  20  24  27  29  31  33
+	BEST so far (Size 10): 2  4  6  10  15  21  26  29  31  34
+Graph 13:
+	BEST so far (Size 11): 5  7  9  12  15  20  24  27  29  31  33
+Graph 14:
+	BEST so far (Size 10): 5  7  10  12  15  20  24  27  30  33
+Graph 15:
+	BEST so far (Size 11): 5  7  10  12  15  21  24  27  30  32  34
+	BEST so far (Size 10): 5  7  10  12  15  20  24  27  30  33
