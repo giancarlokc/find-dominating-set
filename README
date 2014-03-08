@@ -2,6 +2,8 @@ Giancarlo Klemm Camilo
 
 Backtrack algorithm in C++ to find a minimum dominating set for a given graph.
 
+Before finding the dominating set, the vertices are renamed depending in how close they are.
+
 Compile:
 
 	Just use 'make'
