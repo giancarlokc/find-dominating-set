@@ -10,7 +10,8 @@ do
 	echo "Entry: $f"
 	# do something on $f
 	newname="$f-test"
-	time ./findDomSet < $f > $newname
+	time ./findDomSet 0 < $f > $newname
+	./checkDom < $newname
 	echo "-- FINISH --"
 	echo ""
 done
