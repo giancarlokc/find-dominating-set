@@ -1,9 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 #include <list>
 #include <queue>
 #include <math.h>
 #include <string.h>
+#include <algorithm>
 
 #define NOT_DECIDED 0
 #define E_DOMSET 1
@@ -25,8 +27,9 @@ struct vertex{
 };
 
 /* Graph input */
-bool graph_input(int *n_vertex, vertex *adjList,int *max_degree, int *size_domSet, int *size_minDomSet, int *domSet, int *minDomSet, int *n_dominated, bool certOut){
+bool graph_input(int *n_vertex, vertex *adjList,int *max_degree, int *size_domSet, int *size_minDomSet, int *domSet, int *minDomSet, int *n_dominated, bool certOut, int queue[]){
 	std::list<vertex>::iterator it;
+	int listed[NMAX], nListed;
 	*max_degree = 0;
 	*n_vertex = 0;
 	/* Read number of vertices */
@@ -35,6 +38,12 @@ bool graph_input(int *n_vertex, vertex *adjList,int *max_degree, int *size_domSe
 	if(certOut)
 		printf("%d\n", *n_vertex);
 //	printf("Read: %d\n",*n_vertex);
+
+	memset(listed,0,*n_vertex*sizeof(int));
+	listed[0]++;
+	queue[0]=0;
+	nListed=1;
+
 	for(int i=0;i<*n_vertex;i++){
 		vertex tmp;
 		int tmp_vertex;
@@ -56,6 +65,10 @@ bool graph_input(int *n_vertex, vertex *adjList,int *max_degree, int *size_domSe
 				return false;
 			if(certOut)
 				printf(" %d", tmp_vertex);
+			if(!listed[tmp_vertex]){
+				queue[nListed++] = tmp_vertex;
+				listed[tmp_vertex]++;
+			}
 			adjList[i].neighbors.push_back(tmp_vertex);
 		}
 		if(certOut)
@@ -71,10 +84,10 @@ bool graph_input(int *n_vertex, vertex *adjList,int *max_degree, int *size_domSe
 	return false;
 }
 
-/*void debug(int rec_level){
+/*void debug(int vertex){
 	int i = 0;
 
-	printf("Recursion Level: %d\n", rec_level);
+	printf("Recursion Level: %d\n", vertex);
 	printf("   Number of vertices dominated: %d\n", n_dominated);	
 	printf("   Vertex: Times Dominated - Times Dominated if Whites are Red - Status\n"); 
 	for(int it=0;it < n_vertex;it++){
@@ -86,38 +99,7 @@ bool graph_input(int *n_vertex, vertex *adjList,int *max_degree, int *size_domSe
 	}
 }*/
 
-void renameVertices(int *n_vertex, vertex *adjList, int _vertex, int *visited){
-	int n_visited = 0;
-	queue<int> st;
-	vertex adjList2[NMAX];
-	
-	for(int t=0;t<*n_vertex;t++){
-		adjList2[t] = adjList[t];
-	}
-	
-	visited[0] = 1;
-	
-	int count = 0;
-	for(int k=0;k<*n_vertex;k++){
-		if(visited[k] == 0){
-			visited[k] = 1;
-			adjList[count] = adjList2[k];
-//			printf("%d\n", k);
-			for(list<int>::iterator it=adjList2[k].neighbors.begin(); it != adjList2[k].neighbors.end();++it){
-				if(visited[*it] == 0){
-					count++;
-					adjList[count] = adjList2[*it];
-//					printf("%d\n", *it);
-					visited[*it] = 1;
-				}
-			}
-			count++;
-		}
-	}
-	return;
-}
-
-int find_minDomSet(int rec_level, int *n_vertex, vertex *adjList,int *max_degree, int *size_domSet, int *size_minDomSet, int *domSet, int *minDomSet, int *n_dominated, bool certOut){
+int find_minDomSet(int rec_level, int *n_vertex, vertex *adjList,int *max_degree, int *size_domSet, int *size_minDomSet, int *domSet, int *minDomSet, int *n_dominated, bool certOut, int queue[]){
 //	if(DEBUG) debug(rec_level);
 	
 	/* If all whites are red and there is some vertex dominated 0 times, then backtrack */
@@ -126,17 +108,14 @@ int find_minDomSet(int rec_level, int *n_vertex, vertex *adjList,int *max_degree
 //			return 1;
 //	}
 
-	if(*size_domSet+ceil((*n_vertex-*n_dominated)/(*max_degree+1)) >= *size_minDomSet){
+	if(*size_domSet+ceil((double)((double)(*n_vertex-*n_dominated)/(double)(*max_degree+1))) >= *size_minDomSet){
 		return 1;
 	}
 
 	/* If is in the last level (All vertices have an status) and All vertex are dominated */
-	if(rec_level == *n_vertex){
-		return 1;
-	}
 
 	/**************************************************************************************/
-	if(*n_dominated == *n_vertex){
+	if(*n_dominated == *n_vertex || rec_level == *n_vertex){
 			if(*size_domSet < *size_minDomSet){
 //				if(DEBUG){
 //					printf("*** RECORD THIS SET AS THE CURRENT minDomSet ***\n");
@@ -159,28 +138,30 @@ int find_minDomSet(int rec_level, int *n_vertex, vertex *adjList,int *max_degree
 			}
 		return 1;
 	}
+	
+	int vertex = queue[rec_level];
 
 	/**************************************************/
 	/* Try vertex as EN_DOMSET (Excluded from domSet) */
 	/* Push */
 	bool undom_neighbor = false;
-//	adjList[rec_level].status = NE_DOMSET;
-	adjList[rec_level].allred_dominated = adjList[rec_level].allred_dominated - 1;
-	if(adjList[rec_level].allred_dominated != 0){
-		for(std::list<int>::iterator itt = adjList[rec_level].neighbors.begin();itt != adjList[rec_level].neighbors.end(); ++itt){
+//	adjList[vertex].status = NE_DOMSET;
+	adjList[vertex].allred_dominated = adjList[vertex].allred_dominated - 1;
+	if(adjList[vertex].allred_dominated != 0){
+		for(std::list<int>::iterator itt = adjList[vertex].neighbors.begin();itt != adjList[vertex].neighbors.end(); ++itt){
 			adjList[*itt].allred_dominated = adjList[*itt].allred_dominated - 1;
 			if(adjList[*itt].allred_dominated == 0)
 				undom_neighbor = true;
 		}
 		/* Recursive call */
-		if(!undom_neighbor && !find_minDomSet(rec_level+1, n_vertex, adjList, max_degree, size_domSet, size_minDomSet, domSet, minDomSet, n_dominated, certOut))
+		if(!undom_neighbor && !find_minDomSet(rec_level+1, n_vertex, adjList, max_degree, size_domSet, size_minDomSet, domSet, minDomSet, n_dominated, certOut, queue))
 			return 0;
 	}
 	/* Pop */
-//	adjList[rec_level].status = NOT_DECIDED;
-	adjList[rec_level].allred_dominated = adjList[rec_level].allred_dominated + 1;
-	if(adjList[rec_level].allred_dominated != 1){
-		for(std::list<int>::iterator itt = adjList[rec_level].neighbors.begin();itt != adjList[rec_level].neighbors.end(); ++itt){
+//	adjList[vertex].status = NOT_DECIDED;
+	adjList[vertex].allred_dominated = adjList[vertex].allred_dominated + 1;
+	if(adjList[vertex].allred_dominated != 1){
+		for(std::list<int>::iterator itt = adjList[vertex].neighbors.begin();itt != adjList[vertex].neighbors.end(); ++itt){
 			adjList[*itt].allred_dominated = adjList[*itt].allred_dominated + 1;
 		}
 	}
@@ -189,29 +170,29 @@ int find_minDomSet(int rec_level, int *n_vertex, vertex *adjList,int *max_degree
 	/* Try vertex as E_DOMSET (In domSet) */
 	/* Push */
 	*size_domSet = *size_domSet + 1;
-	domSet[*size_domSet - 1] = rec_level;
-//	adjList[rec_level].status = E_DOMSET;
-	if(adjList[rec_level].times_dominated == 0)
+	domSet[*size_domSet - 1] = vertex;
+//	adjList[vertex].status = E_DOMSET;
+	if(adjList[vertex].times_dominated == 0)
 		*n_dominated = *n_dominated + 1;
-	adjList[rec_level].times_dominated = adjList[rec_level].times_dominated + 1;
-	for(std::list<int>::iterator itt = adjList[rec_level].neighbors.begin();itt != adjList[rec_level].neighbors.end(); ++itt){
+	adjList[vertex].times_dominated = adjList[vertex].times_dominated + 1;
+	for(std::list<int>::iterator itt = adjList[vertex].neighbors.begin();itt != adjList[vertex].neighbors.end(); ++itt){
 		if(adjList[*itt].times_dominated == 0)
 			*n_dominated = *n_dominated + 1;
 		adjList[*itt].times_dominated = adjList[*itt].times_dominated + 1;
 	}
 	/* Recursive call */
-	if(!find_minDomSet(rec_level+1, n_vertex, adjList, max_degree, size_domSet, size_minDomSet, domSet, minDomSet, n_dominated, certOut))
+	if(!find_minDomSet(rec_level+1, n_vertex, adjList, max_degree, size_domSet, size_minDomSet, domSet, minDomSet, n_dominated, certOut, queue))
 		return 0;
 		
 	if(rec_level==0)
 		return 1;
 	/* Pop */
 	*size_domSet = *size_domSet - 1;
-//	adjList[rec_level].status = NOT_DECIDED;
-	adjList[rec_level].times_dominated = adjList[rec_level].times_dominated - 1;
-	if(adjList[rec_level].times_dominated == 0)
+//	adjList[vertex].status = NOT_DECIDED;
+	adjList[vertex].times_dominated = adjList[vertex].times_dominated - 1;
+	if(adjList[vertex].times_dominated == 0)
 		*n_dominated = *n_dominated - 1;
-	for(std::list<int>::iterator itt = adjList[rec_level].neighbors.begin();itt != adjList[rec_level].neighbors.end(); ++itt){
+	for(std::list<int>::iterator itt = adjList[vertex].neighbors.begin();itt != adjList[vertex].neighbors.end(); ++itt){
 		adjList[*itt].times_dominated = adjList[*itt].times_dominated - 1;
 		if(adjList[*itt].times_dominated == 0)
 			*n_dominated = *n_dominated - 1;
@@ -224,6 +205,7 @@ int main(int argc, char **argv){
 	vertex adjList[NMAX];
 	/* Variables for finding the domSet */
 	int size_domSet, size_minDomSet, n_dominated;
+	int queue[NMAX];
 	int domSet[NMAX], minDomSet[NMAX];
 	bool endOfInput = false;
 	bool certOut = false;
@@ -238,17 +220,13 @@ int main(int argc, char **argv){
 	}
 	
 	do{
-		endOfInput = graph_input(&n_vertex, adjList, &max_degree, &size_domSet, &size_minDomSet, domSet, minDomSet, &n_dominated, certOut);
+		endOfInput = graph_input(&n_vertex, adjList, &max_degree, &size_domSet, &size_minDomSet, domSet, minDomSet, &n_dominated, certOut, queue);
 		if(endOfInput == false){
+		
 //			printf("Graph %d:\n",n_graph++);
 			fflush(stdout);
 
-			int visitedVertices[NMAX];
-			for(int k=0;k<n_vertex;k++){
-				visitedVertices[k] = 0;
-			}
-		//	renameVertices(&n_vertex, adjList, 0, visitedVertices);
-			find_minDomSet(0, &n_vertex, adjList, &max_degree, &size_domSet, &size_minDomSet, domSet, minDomSet, &n_dominated, certOut);
+			find_minDomSet(0, &n_vertex, adjList, &max_degree, &size_domSet, &size_minDomSet, domSet, minDomSet, &n_dominated, certOut, queue);
 			if(certOut == true){
 				printf("%d\n", size_minDomSet);
 				for(int p=0;p<size_minDomSet;p++){
@@ -257,6 +235,9 @@ int main(int argc, char **argv){
 				printf("\n");
 			} else {
 				printf("-1\n");
+			}
+			for(int p=0;p<NMAX;p++){
+				queue[p] = 0;
 			}
 		}
 	}while(endOfInput == false);
