@@ -37,8 +37,15 @@
 	"paths": {
 		"/generated.json": {
 			"get": {
-				"tags": ["test"],
+			    "tags": ["test"],
 				"summary": "test",
+				"produces": ["application/xml", "application/json"]
+			}
+		},
+		"/generatedsmall.json": {
+			"get": {
+			    "tags": ["testsmall"],
+				"summary": "testsmall",
 				"produces": ["application/xml", "application/json"]
 			}
 		},
